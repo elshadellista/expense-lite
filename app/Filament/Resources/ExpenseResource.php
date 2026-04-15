@@ -17,7 +17,7 @@ class ExpenseResource extends Resource
 {
     protected static ?string $model = Expense::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-shopping-cart';
 
     public static function form(Form $form): Form
     {
@@ -31,7 +31,7 @@ class ExpenseResource extends Resource
                 ->required()
                 ->label('Nama Barang/Jajan'),
             \Filament\Forms\Components\TextInput::make('amount')
-                ->numeric() //
+                ->numeric()
                 ->prefix('Rp')
                 ->required()
                 ->label('Nominal'),
