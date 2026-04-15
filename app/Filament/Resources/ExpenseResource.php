@@ -57,7 +57,9 @@ class ExpenseResource extends Resource
                     thousandsSeparator: '.',
                     )
                 ->prefix('Rp ')
-                ->sortable(),
+                ->sortable()
+                ->color(fn ($state) => $state > 100000 ? 'danger' : 'success') // Merah kalau > 100rb
+                ->weight('bold'),
             \Filament\Tables\Columns\TextColumn::make('date')
                 ->date()
                 ->label('Tanggal'),
