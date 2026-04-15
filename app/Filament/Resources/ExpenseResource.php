@@ -33,6 +33,8 @@ class ExpenseResource extends Resource
             \Filament\Forms\Components\TextInput::make('amount')
                 ->numeric()
                 ->prefix('Rp')
+                ->placeholder('Contoh: 50000')
+                ->helperText('Input jumlah uang yang kamu keluarkan ya!')
                 ->required()
                 ->label('Nominal'),
             \Filament\Forms\Components\DatePicker::make('date')
@@ -45,6 +47,10 @@ class ExpenseResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->emptyStateHeading('Belum ada catatan jajan nih 💸')
+            ->emptyStateDescription('Ayo mulai catat pengeluaranmu biar ga boncos!')
+            ->emptyStateIcon('heroicon-o-face-frown')
+            ->defaultSort('date', 'desc')
             ->columns([
             \Filament\Tables\Columns\TextColumn::make('category.name')
                 ->label('Kategori'),
@@ -58,7 +64,8 @@ class ExpenseResource extends Resource
                     )
                 ->prefix('Rp ')
                 ->sortable()
-                ->color(fn ($state) => $state > 100000 ? 'danger' : 'success') // Merah kalau > 100rb
+                ->summarize(Tables\Columns\Summarizers\Sum::make()->label('Total Semua'))
+                ->color(fn ($state) => $state > 100000 ? 'danger' : 'success')
                 ->weight('bold'),
             \Filament\Tables\Columns\TextColumn::make('date')
                 ->date()
