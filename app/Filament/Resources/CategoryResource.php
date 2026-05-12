@@ -6,6 +6,7 @@ use App\Filament\Resources\CategoryResource\Pages;
 use App\Filament\Resources\CategoryResource\RelationManagers;
 use App\Models\Category;
 use Filament\Forms;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -23,9 +24,11 @@ class CategoryResource extends Resource
     {
         return $form
             ->schema([
-                \Filament\Forms\Components\TextInput::make('name')
-                ->required()
-                ->label('Nama Kategori'),
+                TextInput::make('target_amount')
+                ->numeric()
+                ->prefix('Rp')
+                ->label('Jatah Anggaran')
+                ->required(),
             ]);
     }
 
