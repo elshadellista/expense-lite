@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Financial Glow Up 🐾</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght=500;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Quicksand', sans-serif; }
         .sidebar-gradient { background: #AEB719; } /* Olive dari Palette */
@@ -13,11 +13,11 @@
         .text-raspberry { color: #9E0232; } /* Pink Raspberry dari Palette */
         .glass-card { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); border-radius: 30px; border: 1px solid rgba(255, 255, 255, 0.5); }
         button {
-        cursor: pointer !important;
-        -webkit-appearance: none;
+            cursor: pointer !important;
+            -webkit-appearance: none;
         }
         .bg-raspberry {
-        background-color: #9E0232 !important;
+            background-color: #9E0232 !important;
         }
     </style>
 </head>
@@ -58,7 +58,6 @@
             </div>
         </aside>
 
-
         <main class="flex-1 overflow-y-auto p-10 lg:p-14">
 
             <header class="flex justify-between items-end mb-12">
@@ -73,28 +72,29 @@
                 </div>
             </header>
 
-
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 mb-12">
 
-                <div class="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-[#F8CAE4] p-8 rounded-[40px] shadow-sm flex flex-col justify-between border-b-8 border-pink-300">
-                        <p class="text-xs font-bold text-raspberry uppercase tracking-widest">Sisa Jatah Jajan</p>
-                        <h3 class="text-4xl font-bold mt-4">Rp {{ number_format($sisa, 0, ',', '.') }}</h3>
-                        <div class="mt-3 text-[11px] font-bold text-pink-700 bg-white/50 px-3 py-1.5 rounded-xl inline-block">
-    🐾 Jatah harian: <span class="text-[#9E0232]">Rp {{ number_format($jatahHarian, 0, ',', '.') }}/hari</span>
-</div>
-                        <p class="text-[10px] mt-4 font-bold italic opacity-70">
-                        "{{ $status ?? 'Stay glowing, stay saving! ✨' }}"</p>
+                <div class="bg-[#F8CAE4] p-8 rounded-[40px] shadow-sm flex flex-col justify-between border-b-8 border-pink-300">
+                    <p class="text-xs font-bold text-raspberry uppercase tracking-widest">Sisa Jatah Jajan</p>
+                    <h3 class="text-4xl font-bold mt-4">Rp {{ number_format($sisa, 0, ',', '.') }}</h3>
+                    <div class="mt-3 text-[11px] font-bold text-pink-700 bg-white/50 px-3 py-1.5 rounded-xl inline-block">
+                        🐾 Jatah harian: <span class="text-[#9E0232]">Rp {{ number_format($jatahHarian, 0, ',', '.') }}/hari</span>
                     </div>
-
-
-                    <div class="bg-[#CFDD9D] p-8 rounded-[40px] shadow-sm flex flex-col justify-between border-b-8 border-green-300">
-                        <p class="text-xs font-bold text-[#4a5d58] uppercase tracking-widest">Tabungan Goals</p>
-                        <h3 class="text-4xl font-bold mt-4">Rp 1.200.000</h3>
-                        <p class="text-[10px] mt-4 font-bold opacity-50 italic">3 dari 5 impian tercapai! 💫</p>
-                    </div>
+                    <p class="text-[10px] mt-4 font-bold italic opacity-70">
+                        "{{ $status ?? 'Stay glowing, stay saving! ✨' }}"
+                    </p>
                 </div>
 
+                <div class="bg-[#CBE4B4] p-8 rounded-[40px] shadow-sm flex flex-col justify-between border-b-8 border-green-300">
+                    <div>
+                        <p class="text-xs font-bold text-[#4a5d58] uppercase tracking-widest">Tabungan Goals</p>
+                        <h3 class="text-4xl font-bold mt-4">Rp {{ number_format($totalSavedAmount, 0, ',', '.') }}</h3>
+                        <div class="mt-3 text-[11px] font-bold text-green-800 bg-white/50 px-3 py-1.5 rounded-xl inline-block">
+                            🐾 {{ $achievedGoalsCount }} dari {{ $totalGoalsCount }} impian tercapai! ✨
+                        </div>
+                    </div>
+                    <p class="text-[10px] mt-4 font-bold italic opacity-70">"Menabung sedikit demi sedikit demi masa depan kiyowo"</p>
+                </div>
 
                 <div class="glass-card p-8 flex flex-col items-center justify-center text-center shadow-lg">
                     <div class="relative w-32 h-32 mb-4">
@@ -110,34 +110,28 @@
                     </div>
                     <p class="text-xs font-bold text-gray-400 uppercase">Efisiensi Bulan Ini</p>
                 </div>
-            </div>
 
+            </div> <div class="glass-card p-10 shadow-sm border border-white/80 w-full">
+                <div class="flex flex-wrap items-center gap-6 mb-10">
+                    <h3 class="text-2xl font-bold text-[#4a5d58] m-0">Riwayat Jajan Terakhir 🐾</h3>
 
-            <div class="glass-card p-10 shadow-sm border border-white/80">
-    <div class="flex justify-between items-center mb-10">
-        <h3 class="text-2xl font-bold text-[#4a5d58]">Riwayat Jajan Terakhir 🐾</h3>
+                    <form action="/" method="GET" id="filterForm" class="flex items-center gap-2 m-0 p-0">
+                        <label for="category_id" class="text-xs font-bold text-gray-400 uppercase tracking-wider">Saring:</label>
+                        <select name="category_id" onchange="document.getElementById('filterForm').submit()" class="p-2 text-xs font-bold rounded-xl border border-gray-200 bg-[#F7EBDF] text-gray-700 focus:ring-2 focus:ring-[#F8CAE4] cursor-pointer shadow-sm">
+                            <option value="">Semua Jajan 🐾</option>
+                            @foreach($categories as $cat)
+                                <option value="{{ $cat->id }}" {{ request('category_id') == $cat->id ? 'selected' : '' }}>
+                                    {{ $cat->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </form>
 
-        <div class="flex items-center gap-4">
-
-            <form action="/" method="GET" id="filterForm" class="flex items-center gap-2">
-                <label for="category_id" class="text-xs font-bold text-gray-400 uppercase tracking-wider">Saring:</label>
-                <select name="category_id" onchange="document.getElementById('filterForm').submit()" class="p-2 text-xs font-bold rounded-xl border-none bg-[#F7EBDF] text-gray-700 focus:ring-2 focus:ring-[#F8CAE4] cursor-pointer">
-                    <option value="">Semua Jajan 🐾</option>
-                    @foreach($categories as $cat)
-                        <option value="{{ $cat->id }}" {{ request('category_id') == $cat->id ? 'selected' : '' }}>
-                            {{ $cat->name }}
-                        </option>
-                    @endforeach
-                </select>
-            </form>
-
-            <button onclick="toggleModal()" class="bg-[#9E0232] text-white px-8 py-3 rounded-2xl font-bold text-sm shadow-lg shadow-pink-200 hover:bg-[#7a0226] transition-all cursor-pointer border-none flex items-center gap-2 min-w-[160px] justify-center">
-                <span class="text-lg">🐾</span>
-                <span class="text-white">Tambah Jajan</span>
-            </button>
-
-        </div>
-    </div>
+                    <button onclick="toggleModal()" class="bg-[#9E0232] text-white px-8 py-3 rounded-2xl font-bold text-sm shadow-lg shadow-pink-200 hover:bg-[#7a0226] transition-all cursor-pointer border-none flex items-center gap-2 min-w-[160px] justify-center ml-auto">
+                        <span class="text-lg">🐾</span>
+                        <span class="text-white">Tambah Jajan</span>
+                    </button>
+                </div>
 
                 <div class="overflow-hidden">
                     <table class="w-full text-left">
@@ -176,47 +170,47 @@
     </div>
 
     <div id="modalJajan" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50 p-4">
-    <div class="bg-white w-full max-w-md p-8 rounded-[40px] shadow-2xl border-4 border-[#F8CAE4]">
-        <div class="flex justify-between items-center mb-6">
-            <h2 class="text-2xl font-bold text-[#9E0232]">Catat Jajan Baru 🐾</h2>
-            <button onclick="toggleModal()" class="text-gray-400 hover:text-black text-2xl">✕</button>
+        <div class="bg-white w-full max-w-md p-8 rounded-[40px] shadow-2xl border-4 border-[#F8CAE4]">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-[#9E0232]">Catat Jajan Baru 🐾</h2>
+                <button onclick="toggleModal()" class="text-gray-400 hover:text-black text-2xl">✕</button>
+            </div>
+
+            <form action="/add-expense" method="POST" class="space-y-5">
+                @csrf
+                <div>
+                    <label class="block text-xs font-bold text-gray-400 mb-2 uppercase">Pilih Kategori</label>
+                    <select name="category_id" class="w-full p-4 rounded-2xl border-none bg-[#F7EBDF] font-semibold text-gray-700 focus:ring-2 focus:ring-[#F8CAE4]">
+                        @foreach($categories as $cat)
+                            <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-400 mb-2 uppercase">Nominal Jajan</label>
+                    <input type="number" name="amount" placeholder="Contoh: 15000" required class="w-full p-4 rounded-2xl border-none bg-[#F7EBDF] font-bold focus:ring-2 focus:ring-[#F8CAE4]">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-400 mb-2 uppercase">Catatan Kecil</label>
+                    <input type="text" name="description" placeholder="Beli apa hari ini?" class="w-full p-4 rounded-2xl border-none bg-[#F7EBDF] focus:ring-2 focus:ring-[#F8CAE4]">
+                </div>
+
+                <button type="submit" class="w-full bg-[#9E0232] text-white p-5 rounded-[25px] font-bold shadow-xl shadow-pink-100 hover:scale-[1.02] transition-transform">
+                    Simpan Jajan ✨
+                </button>
+            </form>
         </div>
-
-        <form action="/add-expense" method="POST" class="space-y-5">
-            @csrf
-            <div>
-                <label class="block text-xs font-bold text-gray-400 mb-2 uppercase">Pilih Kategori</label>
-                <select name="category_id" class="w-full p-4 rounded-2xl border-none bg-[#F7EBDF] font-semibold text-gray-700 focus:ring-2 focus:ring-[#F8CAE4]">
-                    @foreach($categories as $cat)
-                        <option value="{{ $cat->id }}">{{ $cat->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-
-            <div>
-                <label class="block text-xs font-bold text-gray-400 mb-2 uppercase">Nominal Jajan</label>
-                <input type="number" name="amount" placeholder="Contoh: 15000" required class="w-full p-4 rounded-2xl border-none bg-[#F7EBDF] font-bold focus:ring-2 focus:ring-[#F8CAE4]">
-            </div>
-
-            <div>
-                <label class="block text-xs font-bold text-gray-400 mb-2 uppercase">Catatan Kecil</label>
-                <input type="text" name="description" placeholder="Beli apa hari ini?" class="w-full p-4 rounded-2xl border-none bg-[#F7EBDF] focus:ring-2 focus:ring-[#F8CAE4]">
-            </div>
-
-            <button type="submit" class="w-full bg-[#9E0232] text-white p-5 rounded-[25px] font-bold shadow-xl shadow-pink-100 hover:scale-[1.02] transition-transform">
-                Simpan Jajan ✨
-            </button>
-        </form>
     </div>
-</div>
 
-<script>
-    function toggleModal() {
-        const modal = document.getElementById('modalJajan');
-        modal.classList.toggle('hidden');
-        modal.classList.toggle('flex');
-    }
-</script>
+    <script>
+        function toggleModal() {
+            const modal = document.getElementById('modalJajan');
+            modal.classList.toggle('hidden');
+            modal.classList.toggle('flex');
+        }
+    </script>
 
 </body>
 </html>

@@ -49,10 +49,23 @@ Route::get('/', function () {
         ->groupBy('date');
     $goals = \App\Models\Goal::all();
 
+    if ($goals->isEmpty()) {
+        $totalSavedAmount = 1200000;
+        $totalGoalsCount = 5;
+        $achievedGoalsCount = 3;
+    } else {
+        $totalSavedAmount = \App\Models\Goal::sum('saved_amount');
+        $totalGoalsCount = $goals->count();
+        $achievedGoalsCount = $goals->filter(function ($goal) {
+            return $goal->saved_amount >= $goal->price;
+        })->count();
+    }
+
     return view('welcome', compact(
         'budget', 'totalBudgetValue', 'totalExpense', 'sisaBudget', 'sisa',
         'recentExpenses', 'categories', 'status', 'greeting',
-        'expensesByDate', 'goals', 'jatahHarian', 'categoryId'
+        'expensesByDate', 'goals', 'jatahHarian', 'categoryId',
+        'totalSavedAmount', 'totalGoalsCount', 'achievedGoalsCount'
     ));
 });
 
