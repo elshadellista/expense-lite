@@ -44,6 +44,7 @@ Route::get('/', function () {
 
 Route::post('/add-expense', function (Request $request) {
     Expense::create([
+        'name'         => $request->description ?? 'Jajan',
         'category_id' => $request->category_id,
         'amount' => $request->amount,
         'date' => now(),
