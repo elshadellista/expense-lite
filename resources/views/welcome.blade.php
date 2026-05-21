@@ -13,7 +13,7 @@
         .text-raspberry { color: #9E0232; } /* Pink Raspberry dari Palette */
         .glass-card { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); border-radius: 30px; border: 1px solid rgba(255, 255, 255, 0.5); }
         button {
-        cursor: pointer !important; /* Biar pas disentuh kursor berubah jadi tangan */
+        cursor: pointer !important;
         -webkit-appearance: none;
         }
         .bg-raspberry {
@@ -80,6 +80,9 @@
                     <div class="bg-[#F8CAE4] p-8 rounded-[40px] shadow-sm flex flex-col justify-between border-b-8 border-pink-300">
                         <p class="text-xs font-bold text-raspberry uppercase tracking-widest">Sisa Jatah Jajan</p>
                         <h3 class="text-4xl font-bold mt-4">Rp {{ number_format($sisa, 0, ',', '.') }}</h3>
+                        <div class="mt-3 text-[11px] font-bold text-pink-700 bg-white/50 px-3 py-1.5 rounded-xl inline-block">
+    🐾 Jatah harian: <span class="text-[#9E0232]">Rp {{ number_format($jatahHarian, 0, ',', '.') }}/hari</span>
+</div>
                         <p class="text-[10px] mt-4 font-bold italic opacity-70">
                         "{{ $status ?? 'Stay glowing, stay saving! ✨' }}"</p>
                     </div>
