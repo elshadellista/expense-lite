@@ -114,13 +114,30 @@
 
 
             <div class="glass-card p-10 shadow-sm border border-white/80">
-                <div class="flex justify-between items-center mb-10">
-                    <h3 class="text-2xl font-bold text-[#4a5d58]">Riwayat Jajan Terakhir 🐾</h3>
-                        <button onclick="toggleModal()" class="bg-[#9E0232] text-white px-8 py-3 rounded-2xl font-bold text-sm shadow-lg shadow-pink-200 hover:bg-[#7a0226] transition-all cursor-pointer border-none flex items-center gap-2 min-w-[160px] justify-center">
-                        <span class="text-lg">🐾</span>
-                        <span class="text-white">Tambah Jajan</span>
-                        </button>
-                </div>
+    <div class="flex justify-between items-center mb-10">
+        <h3 class="text-2xl font-bold text-[#4a5d58]">Riwayat Jajan Terakhir 🐾</h3>
+
+        <div class="flex items-center gap-4">
+
+            <form action="/" method="GET" id="filterForm" class="flex items-center gap-2">
+                <label for="category_id" class="text-xs font-bold text-gray-400 uppercase tracking-wider">Saring:</label>
+                <select name="category_id" onchange="document.getElementById('filterForm').submit()" class="p-2 text-xs font-bold rounded-xl border-none bg-[#F7EBDF] text-gray-700 focus:ring-2 focus:ring-[#F8CAE4] cursor-pointer">
+                    <option value="">Semua Jajan 🐾</option>
+                    @foreach($categories as $cat)
+                        <option value="{{ $cat->id }}" {{ request('category_id') == $cat->id ? 'selected' : '' }}>
+                            {{ $cat->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </form>
+
+            <button onclick="toggleModal()" class="bg-[#9E0232] text-white px-8 py-3 rounded-2xl font-bold text-sm shadow-lg shadow-pink-200 hover:bg-[#7a0226] transition-all cursor-pointer border-none flex items-center gap-2 min-w-[160px] justify-center">
+                <span class="text-lg">🐾</span>
+                <span class="text-white">Tambah Jajan</span>
+            </button>
+
+        </div>
+    </div>
 
                 <div class="overflow-hidden">
                     <table class="w-full text-left">

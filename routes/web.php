@@ -21,10 +21,16 @@ Route::get('/', function () {
 
     $jatahHarian = $sisaBudget / $sisaHari;
 
+    $categoryId = request('category_id');
+
     $recentExpenses = Expense::with('category')
+        ->when($categoryId, function ($query) use ($categoryId) {
+            return $query->where('category_id', $categoryId);
+        })
         ->orderBy('date', 'desc')
         ->limit(3)
         ->get();
+
     $categories = Category::with('expenses')->get();
     $status = $sisaBudget > 0 ? "Masih bisa jajan kopi, Bestie! ☕" : "Mode hemat aktif, stop jajan dulu! 🛑";
 
@@ -36,6 +42,9 @@ Route::get('/', function () {
 
     $expensesByDate = Expense::whereMonth('date', date('m'))
         ->whereYear('date', date('Y'))
+        ->when($categoryId, function ($query) use ($categoryId) {
+            return $query->where('category_id', $categoryId);
+        })
         ->get()
         ->groupBy('date');
     $goals = \App\Models\Goal::all();
@@ -43,7 +52,7 @@ Route::get('/', function () {
     return view('welcome', compact(
         'budget', 'totalBudgetValue', 'totalExpense', 'sisaBudget', 'sisa',
         'recentExpenses', 'categories', 'status', 'greeting',
-        'expensesByDate', 'goals', 'jatahHarian'
+        'expensesByDate', 'goals', 'jatahHarian', 'categoryId'
     ));
 });
 
