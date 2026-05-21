@@ -100,15 +100,21 @@
                     <div class="relative w-32 h-32 mb-4">
                         <svg class="w-full h-full transform -rotate-90">
                             <circle cx="64" cy="64" r="50" stroke="#F8CAE4" stroke-width="12" fill="transparent" />
+
                             <circle cx="64" cy="64" r="50" stroke="#AEB719" stroke-width="12" fill="transparent"
-                                    stroke-dasharray="314.15" stroke-dashoffset="100" />
+                                    stroke-dasharray="314.15"
+                                    stroke-dashoffset="{{ $circleDashOffset }}"
+                                    class="transition-all duration-500" />
                         </svg>
+
                         <div class="absolute inset-0 flex flex-col items-center justify-center">
-                            <span class="text-2xl font-bold">75%</span>
-                            <span class="text-[8px] font-bold text-gray-400">AMAN</span>
+                            <span class="text-2xl font-bold">{{ $efficiencyPercentage }}%</span>
+                            <span class="text-[8px] font-bold text-gray-400">
+                                {{ $efficiencyPercentage >= 50 ? 'AMAN' : 'BOROS' }}
+                            </span>
                         </div>
-                    </div>
-                    <p class="text-xs font-bold text-gray-400 uppercase">Efisiensi Bulan Ini</p>
+                </div>
+                <p class="text-xs font-bold text-gray-400 uppercase">Efisiensi Bulan Ini</p>
                 </div>
 
             </div> <div class="glass-card p-10 shadow-sm border border-white/80 w-full">

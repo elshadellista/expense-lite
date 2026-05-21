@@ -61,11 +61,21 @@ Route::get('/', function () {
         })->count();
     }
 
+    if ($totalBudgetValue > 0) {
+        $efficiencyPercentage = round(($sisaBudget / $totalBudgetValue) * 100);
+        $efficiencyPercentage = max(0, min(100, $efficiencyPercentage));
+    } else {
+        $efficiencyPercentage = 100;
+    }
+
+    $circleDashOffset = 314.15 - (314.15 * $efficiencyPercentage / 100);
+
     return view('welcome', compact(
         'budget', 'totalBudgetValue', 'totalExpense', 'sisaBudget', 'sisa',
         'recentExpenses', 'categories', 'status', 'greeting',
         'expensesByDate', 'goals', 'jatahHarian', 'categoryId',
-        'totalSavedAmount', 'totalGoalsCount', 'achievedGoalsCount'
+        'totalSavedAmount', 'totalGoalsCount', 'achievedGoalsCount', 'efficiencyPercentage',
+        'efficiencyPercentage', 'circleDashOffset'
     ));
 });
 
